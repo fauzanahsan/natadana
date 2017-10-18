@@ -12,4 +12,6 @@ ActiveAdmin.register Community do
 #   permitted
 # end
 
+  permit_params :community_name, :leader_id, :created_by, :iuran_pokok, :iuran_wajib, :iuran_sukarela
+
 end

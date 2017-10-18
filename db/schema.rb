@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171018033711) do
+ActiveRecord::Schema.define(version: 20171018081453) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "namespace"
@@ -41,6 +41,35 @@ ActiveRecord::Schema.define(version: 20171018033711) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "communities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "community_name", default: ""
+    t.integer "leader_id"
+    t.integer "created_by"
+    t.decimal "iuran_pokok", precision: 15
+    t.decimal "iuran_wajib", precision: 15
+    t.decimal "iuran_sukarela", precision: 15
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "community_members", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "community_id"
+    t.bigint "member_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["community_id", "member_id"], name: "community_member_community_member"
+    t.index ["community_id"], name: "index_community_members_on_community_id"
+    t.index ["member_id"], name: "index_community_members_on_member_id"
+  end
+
+  create_table "members", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name", default: ""
+    t.string "email", default: ""
+    t.string "phone_number", default: ""
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
