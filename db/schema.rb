@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171018110900) do
+ActiveRecord::Schema.define(version: 20171019042403) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "namespace"
@@ -59,9 +59,28 @@ ActiveRecord::Schema.define(version: 20171018110900) do
     t.bigint "member_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["community_id", "member_id"], name: "community_member_community_member"
     t.index ["community_id"], name: "index_community_members_on_community_id"
     t.index ["member_id"], name: "index_community_members_on_member_id"
+  end
+
+  create_table "loans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "member_id"
+    t.string "credit_rating", default: ""
+    t.decimal "loan_amount", precision: 15
+    t.datetime "due_date"
+    t.string "loan_status"
+    t.decimal "mutual_rate", precision: 3, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_loans_on_member_id"
+  end
+
+  create_table "member_wallets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "member_id"
+    t.decimal "balance", precision: 15
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_member_wallets_on_member_id"
   end
 
   create_table "members", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

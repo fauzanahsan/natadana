@@ -9,7 +9,4 @@ class CreateCommunityMembers < ActiveRecord::Migration[5.1]
 
   end
 
-  def down
-  	drop_table :community_members
-  end
 end
