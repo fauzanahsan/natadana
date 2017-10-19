@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171019064136) do
+ActiveRecord::Schema.define(version: 20171019064823) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "namespace"
@@ -71,6 +71,18 @@ ActiveRecord::Schema.define(version: 20171019064136) do
     t.datetime "updated_at", null: false
     t.index ["community_id"], name: "index_community_members_on_community_id"
     t.index ["member_id"], name: "index_community_members_on_member_id"
+  end
+
+  create_table "investor_transactions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "investor_id"
+    t.decimal "total_amount", precision: 15
+    t.string "transaction_type", default: ""
+    t.string "va_number", default: ""
+    t.string "payment_status", default: ""
+    t.datetime "transaction_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["investor_id"], name: "index_investor_transactions_on_investor_id"
   end
 
   create_table "investor_wallets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
