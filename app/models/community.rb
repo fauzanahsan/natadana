@@ -8,4 +8,7 @@ class Community < ApplicationRecord
 
   has_many :transactions
   accepts_nested_attributes_for :transactions
+
+  has_many :community_financings
+  accepts_nested_attributes_for :community_financings
 end

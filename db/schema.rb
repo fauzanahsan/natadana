@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171019044101) do
+ActiveRecord::Schema.define(version: 20171019044723) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "namespace"
@@ -52,6 +52,16 @@ ActiveRecord::Schema.define(version: 20171019044101) do
     t.decimal "iuran_sukarela", precision: 15
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "community_financings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "community_id"
+    t.bigint "loan_id"
+    t.decimal "contribution_amount", precision: 15
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["community_id"], name: "index_community_financings_on_community_id"
+    t.index ["loan_id"], name: "index_community_financings_on_loan_id"
   end
 
   create_table "community_members", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
