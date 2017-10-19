@@ -4,4 +4,8 @@ class Community < ApplicationRecord
   has_many :community_members
   has_many :members, through: :community_members
   accepts_nested_attributes_for :community_members
+
+
+  has_many :transactions
+  accepts_nested_attributes_for :transactions
 end

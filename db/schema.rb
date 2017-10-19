@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171019042403) do
+ActiveRecord::Schema.define(version: 20171019044101) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "namespace"
@@ -98,6 +98,20 @@ ActiveRecord::Schema.define(version: 20171019042403) do
     t.string "last_sign_in_ip"
     t.index ["email"], name: "index_members_on_email", unique: true
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
+  end
+
+  create_table "transactions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "community_id"
+    t.bigint "member_id"
+    t.decimal "total_amount", precision: 15
+    t.string "transaction_type", default: ""
+    t.string "va_number", default: ""
+    t.string "payment_status", default: ""
+    t.datetime "transaction_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["community_id"], name: "index_transactions_on_community_id"
+    t.index ["member_id"], name: "index_transactions_on_member_id"
   end
 
 end

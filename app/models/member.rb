@@ -14,5 +14,8 @@ class Member < ApplicationRecord
   has_many :loans
   accepts_nested_attributes_for :loans
 
+  has_many :transactions
+  accepts_nested_attributes_for :transactions
+
 
 end
