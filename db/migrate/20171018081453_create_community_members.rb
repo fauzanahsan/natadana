@@ -1,12 +1,11 @@
 class CreateCommunityMembers < ActiveRecord::Migration[5.1]
   def change
     create_table :community_members do |t|
-      t.references :community
-      t.references :member
+      t.belongs_to :community, index: true
+      t.belongs_to :member, index:true
       t.timestamps
     end
 
-    add_index :community_members, [:community_id, :member_id], :name => "community_member_community_member"
 
   end
 

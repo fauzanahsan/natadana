@@ -1,0 +1,2 @@
+class MemberWallet < ApplicationRecord
+end
