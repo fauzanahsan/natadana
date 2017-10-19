@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171019044723) do
+ActiveRecord::Schema.define(version: 20171019064136) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "namespace"
@@ -71,6 +71,33 @@ ActiveRecord::Schema.define(version: 20171019044723) do
     t.datetime "updated_at", null: false
     t.index ["community_id"], name: "index_community_members_on_community_id"
     t.index ["member_id"], name: "index_community_members_on_member_id"
+  end
+
+  create_table "investor_wallets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "investor_id"
+    t.decimal "balance", precision: 15
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["investor_id"], name: "index_investor_wallets_on_investor_id"
+  end
+
+  create_table "investors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "phone_number", default: "", null: false
+    t.string "name", default: ""
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_investors_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_investors_on_reset_password_token", unique: true
   end
 
   create_table "loans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
